@@ -1,0 +1,46 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        env:
+          # Vite config reads BASE_PATH from process.env.BASE_PATH
+          BASE_PATH: '/my-portfolio/'
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          # optional: set a deploy committer name/email
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Create GitHub Issue with site URL on success
+        if: success()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const siteUrl = 'https://Theekshana-Gimhan.github.io/my-portfolio';
+            const title = `Site deployed: ${siteUrl}`;
+            const body = `The site has been deployed to ${siteUrl}\n\nWorkflow run: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+            await github.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
