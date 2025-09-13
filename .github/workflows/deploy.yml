@@ -10,7 +10,6 @@ permissions:
   contents: write
   pages: write
   id-token: write
-  issues: write
 
 jobs:
   build-and-deploy:
@@ -43,12 +42,9 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Create GitHub Issue with site URL on success
+      - name: Display deployment success
         if: success()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const siteUrl = 'https://Theekshana-Gimhan.github.io/my-portfolio';
-            const title = `Site deployed: ${siteUrl}`;
-            const body = `The site has been deployed to ${siteUrl}\n\nWorkflow run: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
-            await github.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
+        run: |
+          echo "🚀 Site deployed successfully!"
+          echo "📦 Site URL: https://Theekshana-Gimhan.github.io/my-portfolio"
+          echo "✅ Deployment completed at $(date)"
