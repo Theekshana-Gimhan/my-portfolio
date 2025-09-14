@@ -10,7 +10,7 @@ type Manifest = Record<string, ManifestEntry>;
 // Import the manifest JSON. The manifest is committed and updated by the
 // optimize-images script. Use `assert { type: 'json' }` for ESM-aware bundlers.
 // Vite supports plain JSON imports, so the import below will be resolved.
-import manifestJson from '../../assets/image-manifest.json';
+import manifestJson from '../assets/image-manifest.json';
 
 const manifest = manifestJson as Manifest;
 
