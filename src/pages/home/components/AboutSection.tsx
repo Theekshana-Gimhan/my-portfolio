@@ -114,12 +114,12 @@ export default function AboutSection() {
             
             {/* Main heading with gradient text effect */}
             <h2 className="text-4xl lg:text-5xl font-bold font-[\'Inter\'] mb-6 bg-gradient-to-r from-white to-[#D8ECF8] bg-clip-text text-transparent">
-              Creative Developer
+              solution architect & automation engineer
             </h2>
             
             {/* Personal introduction paragraph */}
             <p className="text-white/70 text-lg leading-relaxed mb-8 font-[\'Inter\']">
-              I'm Theekshana Gimhan, a passionate full-stack developer who transforms ideas into immersive digital experiences. With expertise in modern web technologies and 3D design, I create applications that not only function flawlessly but also captivate users with stunning visual storytelling.
+              I specialize in transforming business needs into intelligent, scalable software solutions that empower organizations to adapt, innovate, and thrive in an ever-changing digital landscape. By combining deep technical expertise with a clear understanding of business objectives, we deliver solutions that not only meet today’s demands but also scale seamlessly for tomorrow’s opportunities.
             </p>
 
             {/* 
@@ -130,11 +130,15 @@ export default function AboutSection() {
             */}
             <div className="flex flex-wrap gap-6 mb-8">
               {[
-                { name: 'HTML5', icon: 'ph ph-code' },
-                { name: 'CSS3', icon: 'ph ph-paint-brush' },
-                { name: 'JavaScript', icon: 'ph ph-lightning' },
-                { name: 'React', icon: 'ph ph-atom' },
-                { name: 'Spline', icon: 'ph ph-cube' }
+                { name: 'System Architecture', icon: 'ph ph-sitemap' },
+                { name: 'Cloud (AWS)', icon: 'ph ph-cloud' },
+                { name: 'Kubernetes', icon: 'ph ph-cubes' },
+                { name: 'CI/CD', icon: 'ph ph-git-branch' },
+                { name: 'IaC (Terraform)', icon: 'ph ph-funnel' },
+                { name: 'Python', icon: 'ph ph-python' },
+                { name: 'Docker', icon: 'ph ph-docker' },
+                { name: 'Automation', icon: 'ph ph-gear-six' },
+                { name: 'Observability', icon: 'ph ph-chart-line' }
               ] /* 
                 Skills are mapped into individual badge components.
                 Each skill renders as an interactive card with hover effects,
