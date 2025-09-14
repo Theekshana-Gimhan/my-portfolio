@@ -2,6 +2,7 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // Scroll helpers used by multiple elements in the footer
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -10,9 +11,18 @@ export default function Footer() {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  /**
+   * Footer
+   * ------
+   * - Presents contact/social links, quick navigation, and services
+   * - Uses the same `animate-on-scroll` hooks as the rest of the page so
+   *   content animates into view consistently.
+   * - The Back to Top button is a convenience affordance that uses
+   *   `scrollToTop` to return the user to the top of the page.
+   */
   return (
     <footer className="py-16 relative border-t border-white/10 bg-black">
-      {/* Subtle light spots for depth */}
+      {/* Subtle decorative light spots to add depth */}
       <div className="absolute top-8 left-20 w-1.5 h-1.5 bg-white/20 rounded-full blur-sm"></div>
       <div className="absolute top-16 right-32 w-1 h-1 bg-[#D8ECF8]/30 rounded-full"></div>
       <div className="absolute bottom-12 left-1/3 w-2 h-2 bg-white/15 rounded-full blur-sm"></div>

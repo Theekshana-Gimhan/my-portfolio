@@ -12,12 +12,23 @@ import Footer from './components/Footer';
 export default function Home() {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  /**
+   * Effects
+   * -------
+   * - Initializes an IntersectionObserver to add the `animate-in` class
+   *   to elements when they enter the viewport (used for entrance
+   *   animations on scroll).
+   * - Adds a scroll listener to update the header's blur and background
+   *   opacity for a subtle depth effect as the user scrolls.
+   * - Cleans up both observers/listeners on unmount.
+   */
   useEffect(() => {
     // Initialize scroll animations
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // 'animate-in' triggers Tailwind-based CSS transitions
             entry.target.classList.add('animate-in');
           }
         });
@@ -35,6 +46,7 @@ export default function Home() {
       if (header) {
         const scrollY = window.scrollY;
         const blurAmount = Math.min(scrollY / 100, 10);
+        // Update inline styles for a performant visual effect
         header.style.backdropFilter = `blur(${blurAmount}px)`
         header.style.backgroundColor = `rgba(0, 0, 0, ${Math.min(scrollY / 200, 0.9)})`
       }
@@ -48,12 +60,15 @@ export default function Home() {
     };
   }, []);
 
+  // The layout composes several presentational sections. Each section is
+  // a small, focused component (Header, HeroSection, etc.) to keep this
+  // file readable and the responsibilities separated.
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Background with pure black */}
       <div className="fixed inset-0 bg-black"></div>
       
-      {/* Background light spots */}
+      {/* Background light spots (purely decorative) */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
         <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-[#D8ECF8]/30 rounded-full animate-pulse delay-1000"></div>

@@ -1,4 +1,16 @@
-﻿      export default function HeroSection() {
+﻿export default function HeroSection() {
+  /**
+   * HeroSection
+   * -----------
+   * Top-of-page hero that presents an interactive 3D model (Spline)
+   * on the right for larger screens and a compact card on mobile.
+   *
+   * Accessibility & UX notes:
+   * - Buttons use smooth scrolling to move the viewport to target
+   *   sections rather than relying on route changes.
+   * - The Spline iframe is decorated with pointer-events enabled so
+   *   users can interact on supported devices.
+   */
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -9,6 +21,7 @@
     }
   };
 
+  // Scrolls to the next logical section (used by the small mobile CTA)
   const scrollToNext = () => {
     const nextSection = document.getElementById('about') || document.getElementById('projects') || document.getElementById('gallery') || document.getElementById('contact');
     if (nextSection) {
