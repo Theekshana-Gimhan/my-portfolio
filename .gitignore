@@ -1,0 +1,15 @@
+# Node
+node_modules/
+
+# Vite output
+dist/
+out/
+
+# Optimized image variants (generated)
+/src/assets/*_*.[jw][pne][gob]*
+/src/assets/*_*.webp
+/src/assets/*_*.jpg
+
+# Keep manifest and original assets tracked
+!src/assets/image-manifest.json
+!src/assets/profile_pic.jpg
