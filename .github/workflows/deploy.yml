@@ -29,6 +29,16 @@ jobs:
       - name: Run image optimizer (pre-build)
         run: npm run optimize:images
 
+      - name: Verify image manifest exists
+        run: |
+          if [ ! -f "src/assets/image-manifest.json" ]; then
+            echo "ERROR: src/assets/image-manifest.json not found. The image optimizer did not produce the manifest.";
+            echo "Make sure the 'npm run optimize:images' step ran successfully and produced the manifest.";
+            exit 1;
+          else
+            echo "Found src/assets/image-manifest.json";
+          fi
+
       - name: Build
         env:
           # Vite config reads BASE_PATH from process.env.BASE_PATH
