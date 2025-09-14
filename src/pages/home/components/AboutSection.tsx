@@ -1,6 +1,5 @@
 
-import profilePicWebp from '../../../assets/profile_pic.webp';
-import profilePicJpg from '../../../assets/profile_pic_600.jpg';
+import imageManifest from '../../../utils/imageManifest';
 
 /**
  * AboutSection Component
@@ -69,14 +68,30 @@ export default function AboutSection() {
                 {/* Main image container with border and hover effects */}
                 <div className="w-80 h-80 mx-auto relative overflow-hidden rounded-full border-2 border-[#D8ECF8]/30 group-hover:border-[#D8ECF8]/60 transition-all duration-500 group-hover:-translate-y-2">
                   <picture>
-                    {/* Preferred modern format */}
-                    <source srcSet={profilePicWebp} type="image/webp" />
-                    {/* Fallback for browsers without WebP support */}
-                    <img
-                      src={profilePicJpg}
-                      alt="Theekshana Gimhan - Full Stack Developer"
-                      className="w-full h-full object-cover object-top"
-                    />
+                    {/* Preferred modern format using manifest */}
+                    {(() => {
+                      const info = imageManifest.getPreferredAndSrcset('profile_pic.jpg');
+                      if (info) {
+                        return (
+                          <>
+                            <source srcSet={info.srcsetWebp} type="image/webp" />
+                            <img
+                              src={info.jpg}
+                              alt="Theekshana Gimhan - Full Stack Developer"
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </>
+                        );
+                      }
+                      // Fallback when manifest entry missing
+                      return (
+                        <img
+                          src="/src/assets/profile_pic.jpg"
+                          alt="Theekshana Gimhan - Full Stack Developer"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      );
+                    })()}
                   </picture>
                   {/* Subtle overlay for consistent lighting */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#05060f]/30 to-transparent"></div>

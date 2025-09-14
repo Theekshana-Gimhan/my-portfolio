@@ -6,9 +6,8 @@ dist/
 out/
 
 # Optimized image variants (generated)
-/src/assets/*_*.[jw][pne][gob]*
-/src/assets/*_*.webp
-/src/assets/*_*.jpg
+# The optimizer now writes into src/assets/optimized/
+/src/assets/optimized/
 
 # Keep manifest and original assets tracked
 !src/assets/image-manifest.json

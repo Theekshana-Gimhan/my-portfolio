@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run image optimizer (pre-build)
+        run: npm run optimize:images
+
       - name: Build
         env:
           # Vite config reads BASE_PATH from process.env.BASE_PATH

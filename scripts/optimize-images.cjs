@@ -22,6 +22,7 @@ const path = require('path');
 const sharp = require('sharp');
 
 const ASSETS_DIR = path.resolve(__dirname, '../src/assets');
+const OUTPUT_DIR = path.join(ASSETS_DIR, 'optimized');
 const MANIFEST_PATH = path.join(ASSETS_DIR, 'image-manifest.json');
 const WIDTHS = [320, 480, 768, 1024];
 
@@ -38,26 +39,30 @@ async function processImage(file) {
 
   for (const w of WIDTHS) {
     // WebP
-    const outWebp = path.join(ASSETS_DIR, `${base}_${w}.webp`);
+    const outWebp = path.join(OUTPUT_DIR, `${base}_${w}.webp`);
     await sharp(inputPath).resize({ width: w }).webp({ quality: 80 }).toFile(outWebp);
-    variants.push({ width: w, format: 'webp', path: path.basename(outWebp) });
+    variants.push({ width: w, format: 'webp', path: `optimized/${path.basename(outWebp)}` });
 
     // JPEG fallback (for PNG sources, we still create a JPEG fallback)
-    const outJpg = path.join(ASSETS_DIR, `${base}_${w}.jpg`);
+    const outJpg = path.join(OUTPUT_DIR, `${base}_${w}.jpg`);
     await sharp(inputPath).resize({ width: w }).jpeg({ quality: 80 }).toFile(outJpg);
-    variants.push({ width: w, format: 'jpg', path: path.basename(outJpg) });
+    variants.push({ width: w, format: 'jpg', path: `optimized/${path.basename(outJpg)}` });
   }
 
   // Also include a preferred webp and a default jpg at 800 width for quick imports
-  const preferredWebp = path.join(ASSETS_DIR, `${base}_800.webp`);
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+
+  const preferredWebp = path.join(OUTPUT_DIR, `${base}_800.webp`);
   await sharp(inputPath).resize({ width: 800 }).webp({ quality: 80 }).toFile(preferredWebp);
-  const fallbackJpg = path.join(ASSETS_DIR, `${base}_800.jpg`);
+  const fallbackJpg = path.join(OUTPUT_DIR, `${base}_800.jpg`);
   await sharp(inputPath).resize({ width: 800 }).jpeg({ quality: 80 }).toFile(fallbackJpg);
 
   return {
     source: file,
     variants,
-    preferred: { webp: path.basename(preferredWebp), jpg: path.basename(fallbackJpg) }
+    preferred: { webp: `optimized/${path.basename(preferredWebp)}`, jpg: `optimized/${path.basename(fallbackJpg)}` }
   };
 }
 
@@ -65,6 +70,11 @@ async function processImage(file) {
   if (!fs.existsSync(ASSETS_DIR)) {
     console.error('Assets directory missing:', ASSETS_DIR);
     process.exit(1);
+  }
+
+  // Ensure the output directory exists before any writes
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
   const files = fs.readdirSync(ASSETS_DIR).filter(isImageFile);

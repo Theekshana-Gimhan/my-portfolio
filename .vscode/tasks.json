@@ -1,12 +1,34 @@
+
+// VS Code Tasks configuration (version 2.0.0)
+// This file defines editor tasks you can run from the Command Palette
+// or via "Run Task". Tasks are helpful for running common developer
+// workflows such as starting the Vite dev server, running linters, or
+// compiling TypeScript in watch mode.
+
 {
 	"version": "2.0.0",
 	"tasks": [
 		{
+			// Use a shell task for running npm scripts or other shell commands
 			"type": "shell",
+
+			// Human-friendly name shown by VS Code when selecting a task
 			"label": "Run Vite Dev Server",
+
+			// The command executed by the task. This invokes the "dev" npm
+			// script defined in package.json (recommended for cross-platform
+			// compatibility and to pick up npm environment variables).
 			"command": "npm run dev",
+
+			// Place this task in the Build group in VS Code's Run Task UI
 			"group": "build",
+
+			// Keep the task running in the background (dev servers should be background)
 			"isBackground": true,
+
+			// problemMatcher maps the task output to the Problems panel. Using
+			// the TypeScript matcher ($tsc) surfaces TypeScript errors inline
+			// when the dev server or tsc produces compiler output.
 			"problemMatcher": [
 				"$tsc"
 			]
