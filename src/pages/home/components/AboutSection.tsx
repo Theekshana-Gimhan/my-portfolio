@@ -1,4 +1,6 @@
 
+import profilePic from '../../../assets/profile_pic.jpg';
+
 /**
  * AboutSection Component
  * ----------------------
@@ -19,6 +21,12 @@
  * - Skills icons have individual hover animations
  */
 export default function AboutSection() {
+  // Import local profile image from src/assets. Vite will handle bundling and
+  // optimize the image during the build. Put your photo at src/assets/profile_pic.jpg
+  // (the file was added to the repository already).
+  // Note: Keep imports inside the module scope (top-level) so the bundler can
+  // process them correctly.
+  // `profilePic` is imported at the top of the file. Vite will resolve it.
   return (
     <section id="about" className="py-32 relative bg-black">
       {/* 
@@ -60,7 +68,7 @@ export default function AboutSection() {
                 {/* Main image container with border and hover effects */}
                 <div className="w-80 h-80 mx-auto relative overflow-hidden rounded-full border-2 border-[#D8ECF8]/30 group-hover:border-[#D8ECF8]/60 transition-all duration-500 group-hover:-translate-y-2">
                   <img
-                    src="https://readdy.ai/api/search-image?query=Professional%20developer%20portrait%2C%20young%20male%2C%20confident%20expression%2C%20modern%20studio%20lighting%2C%20clean%20background%2C%20cinematic%20quality%2C%20high%20resolution%20headshot&width=400&height=400&seq=theekshana-profile&orientation=squarish"
+                    src={profilePic}
                     alt="Theekshana Gimhan - Full Stack Developer"
                     className="w-full h-full object-cover object-top"
                   />
