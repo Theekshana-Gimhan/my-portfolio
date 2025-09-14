@@ -1,6 +1,9 @@
 
 import imageManifest from '../../../utils/imageManifest';
 import profilePicUrl from '../../../assets/profile_pic.jpg';
+// Icon components
+import { FiLayout, FiCloud, FiBox, FiGitBranch, FiSettings, FiBarChart2 } from 'react-icons/fi';
+import { SiDocker, SiKubernetes, SiPython, SiTerraform } from 'react-icons/si';
 
 /**
  * AboutSection Component
@@ -133,19 +136,19 @@ export default function AboutSection() {
             */}
             <div className="flex flex-wrap gap-6 mb-8">
               {[
-                { name: 'System Architecture', icon: 'ph ph-sitemap' },
-                { name: 'Cloud (AWS)', icon: 'ph ph-cloud' },
-                { name: 'Kubernetes', icon: 'ph ph-cubes' },
-                { name: 'CI/CD', icon: 'ph ph-git-branch' },
-                { name: 'IaC (Terraform)', icon: 'ph ph-funnel' },
-                { name: 'Python', icon: 'ph ph-python' },
-                { name: 'Docker', icon: 'ph ph-docker' },
-                { name: 'Automation', icon: 'ph ph-gear-six' },
-                { name: 'Observability', icon: 'ph ph-chart-line' }
+                { name: 'System Architecture', Icon: FiLayout },
+                { name: 'Cloud (AWS)', Icon: FiCloud },
+                { name: 'Kubernetes', Icon: SiKubernetes },
+                { name: 'CI/CD', Icon: FiGitBranch },
+                { name: 'IaC (Terraform)', Icon: SiTerraform },
+                { name: 'Python', Icon: SiPython },
+                { name: 'Docker', Icon: SiDocker },
+                { name: 'Automation', Icon: FiSettings },
+                { name: 'Observability', Icon: FiBarChart2 }
               ] /* 
                 Skills are mapped into individual badge components.
                 Each skill renders as an interactive card with hover effects,
-                Phosphor Icons, and staggered entrance animations.
+                Phosphor and react-icons components, and staggered entrance animations.
               */.map((skill, index) => (
                 <div
                   key={skill.name}
@@ -155,8 +158,12 @@ export default function AboutSection() {
                   {/* Skill card with glassmorphism effect */}
                   <div className="flex flex-col items-center space-y-2 p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-[#D8ECF8]/40 hover:bg-[#D8ECF8]/5 hover:-translate-y-1 transition-all duration-300">
                     {/* Icon container with fixed dimensions for consistency */}
-                    <div className="w-8 h-8 flex items-center justify-center">
-                      <i className={`${skill.icon} text-2xl text-[#D8ECF8]`}></i>
+                    <div className="w-8 h-8 flex items-center justify-center text-[#D8ECF8]">
+                      {(() => {
+                        const Icon = (skill as any).Icon;
+                        if (!Icon) return null;
+                        return <Icon size={20} className="text-[#D8ECF8]" />;
+                      })()}
                     </div>
                     {/* Skill name label */}
                     <span className="text-xs font-[\'Inter\'] text-white/70">{skill.name}</span>
