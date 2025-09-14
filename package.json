@@ -8,6 +8,8 @@
   "build": "vite build",
   "preview": "vite preview",
   "optimize:profile": "node scripts/optimize-profile.cjs"
+  ,
+  "optimize:images": "node scripts/optimize-images.cjs"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",
