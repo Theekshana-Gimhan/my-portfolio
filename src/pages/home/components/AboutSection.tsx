@@ -1,5 +1,6 @@
 
 import imageManifest from '../../../utils/imageManifest';
+import profilePicUrl from '../../../assets/profile_pic.jpg';
 
 /**
  * AboutSection Component
@@ -83,10 +84,12 @@ export default function AboutSection() {
                           </>
                         );
                       }
-                      // Fallback when manifest entry missing
+                      // Fallback when manifest entry missing. Use an imported
+                      // URL so Vite can bundle the original image and the
+                      // path won't 404 in production.
                       return (
                         <img
-                          src="/src/assets/profile_pic.jpg"
+                          src={profilePicUrl}
                           alt="Theekshana Gimhan - Full Stack Developer"
                           className="w-full h-full object-cover object-top"
                         />

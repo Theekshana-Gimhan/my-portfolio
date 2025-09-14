@@ -116,7 +116,7 @@
             Theekshana Gimhan
           </h1>
           <h2 className="text-lg font-semibold font-['Inter'] text-[#D8ECF8] mb-3">
-            Solution Engineer & AI Developer
+            solution architect & automation engineer
           </h2>
           <p className="text-sm text-white/80 font-['Inter'] leading-relaxed">
             Transforming business needs into intelligent, scalable software solutions

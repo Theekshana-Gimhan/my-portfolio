@@ -39,6 +39,27 @@ jobs:
             echo "Found src/assets/image-manifest.json";
           fi
 
+      - name: Verify image manifest contains required entries
+        run: |
+          set -e
+          MANIFEST=src/assets/image-manifest.json
+          REQUIRED_KEY="profile_pic.jpg"
+          if [ ! -f "$MANIFEST" ]; then
+            echo "ERROR: manifest missing ($MANIFEST)";
+            exit 1;
+          fi
+          if grep -q "\"$REQUIRED_KEY\"" "$MANIFEST"; then
+            echo "Manifest contains required key: $REQUIRED_KEY";
+          else
+            echo "ERROR: manifest does not contain required key: $REQUIRED_KEY";
+            echo "--- Manifest snippet (first 200 chars) ---";
+            head -c 200 "$MANIFEST" || true;
+            echo "";
+            echo "Full manifest contents:";
+            cat "$MANIFEST" || true;
+            exit 1;
+          fi
+
       - name: Build
         env:
           # Vite config reads BASE_PATH from process.env.BASE_PATH
