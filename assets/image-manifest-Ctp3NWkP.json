@@ -1,0 +1,443 @@
+{
+  "pro1/pro1s1.PNG": {
+    "source": "pro1/pro1s1.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s1_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s1_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s1_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s1_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s1_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s1_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s1_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s1_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro1_pro1s1_800.webp",
+      "jpg": "optimized/pro1_pro1s1_800.jpg"
+    }
+  },
+  "pro1/pro1s2.PNG": {
+    "source": "pro1/pro1s2.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s2_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s2_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s2_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s2_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s2_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s2_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s2_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s2_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro1_pro1s2_800.webp",
+      "jpg": "optimized/pro1_pro1s2_800.jpg"
+    }
+  },
+  "pro1/pro1s3.PNG": {
+    "source": "pro1/pro1s3.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s3_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s3_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s3_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s3_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s3_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s3_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s3_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s3_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro1_pro1s3_800.webp",
+      "jpg": "optimized/pro1_pro1s3_800.jpg"
+    }
+  },
+  "pro1/pro1s4.PNG": {
+    "source": "pro1/pro1s4.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s4_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s4_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s4_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s4_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s4_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s4_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro1_pro1s4_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro1_pro1s4_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro1_pro1s4_800.webp",
+      "jpg": "optimized/pro1_pro1s4_800.jpg"
+    }
+  },
+  "pro2/pro2s1.PNG": {
+    "source": "pro2/pro2s1.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s1_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s1_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s1_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s1_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s1_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s1_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s1_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s1_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro2_pro2s1_800.webp",
+      "jpg": "optimized/pro2_pro2s1_800.jpg"
+    }
+  },
+  "pro2/pro2s2.PNG": {
+    "source": "pro2/pro2s2.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s2_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s2_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s2_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s2_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s2_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s2_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s2_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s2_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro2_pro2s2_800.webp",
+      "jpg": "optimized/pro2_pro2s2_800.jpg"
+    }
+  },
+  "pro2/pro2s3.PNG": {
+    "source": "pro2/pro2s3.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s3_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s3_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s3_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s3_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s3_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s3_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s3_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s3_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro2_pro2s3_800.webp",
+      "jpg": "optimized/pro2_pro2s3_800.jpg"
+    }
+  },
+  "pro2/pro2s4.PNG": {
+    "source": "pro2/pro2s4.PNG",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s4_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s4_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s4_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s4_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s4_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s4_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/pro2_pro2s4_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/pro2_pro2s4_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/pro2_pro2s4_800.webp",
+      "jpg": "optimized/pro2_pro2s4_800.jpg"
+    }
+  },
+  "profile_pic.jpg": {
+    "source": "profile_pic.jpg",
+    "variants": [
+      {
+        "width": 320,
+        "format": "webp",
+        "path": "optimized/profile_pic_320.webp"
+      },
+      {
+        "width": 320,
+        "format": "jpg",
+        "path": "optimized/profile_pic_320.jpg"
+      },
+      {
+        "width": 480,
+        "format": "webp",
+        "path": "optimized/profile_pic_480.webp"
+      },
+      {
+        "width": 480,
+        "format": "jpg",
+        "path": "optimized/profile_pic_480.jpg"
+      },
+      {
+        "width": 768,
+        "format": "webp",
+        "path": "optimized/profile_pic_768.webp"
+      },
+      {
+        "width": 768,
+        "format": "jpg",
+        "path": "optimized/profile_pic_768.jpg"
+      },
+      {
+        "width": 1024,
+        "format": "webp",
+        "path": "optimized/profile_pic_1024.webp"
+      },
+      {
+        "width": 1024,
+        "format": "jpg",
+        "path": "optimized/profile_pic_1024.jpg"
+      }
+    ],
+    "preferred": {
+      "webp": "optimized/profile_pic_800.webp",
+      "jpg": "optimized/profile_pic_800.jpg"
+    }
+  }
+}
