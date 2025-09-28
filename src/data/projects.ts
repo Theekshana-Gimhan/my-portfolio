@@ -103,6 +103,25 @@ export const projects: Project[] = [
     // liveUrl: 'https://your-live-url',
     // githubUrl: 'https://github.com/your-username/KPI_Dashboard',
     tags: ['Dashboard', 'KPIs', 'Charts', 'Reporting']
+  },
+  {
+    id: 3,
+    title: 'FinTrack',
+    description: 'AI Studio app scaffold with local run and Gemini API integration.',
+    fullDescription:
+      'FinTrack is an AI Studio app scaffold with straightforward local development: install dependencies, set a GEMINI_API_KEY in .env.local, and start the dev server. The repository documents pushing to an additional remote mirror and standard Node tooling.',
+    techStack: ['Node.js', 'Google Gemini API'],
+    features: [
+      'Local development with npm',
+      'Environment-based API key configuration',
+      'Dev server run workflow'
+    ],
+    image: 'pro3/pro3s1.PNG',
+    gallery: ['pro3/pro3s2.PNG', 'pro3/pro3s3.PNG', 'pro3/pro3s4.PNG'],
+    // Add these when available
+    // liveUrl: 'https://your-live-url',
+    githubUrl: 'https://github.com/Mad-marketing-git/FinTrack',
+    tags: ['AI', 'Gemini', 'Scaffold']
   }
 ];
 
