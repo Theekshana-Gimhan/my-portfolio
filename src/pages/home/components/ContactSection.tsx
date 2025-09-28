@@ -3,7 +3,9 @@ import { useState } from 'react';
 
 /**
  * ContactSection Component
- * =======================
+ * ============    // Your WhatsApp number (replace with your actual WhatsApp number)
+    // Format: country code + number (no + or spaces)
+    const whatsappNumber = "94758236366"; // Your actual WhatsApp number========
  * 
  * Interactive contact form with social media links and animated form submission.
  * Features client-side validation, loading states, and responsive design.
@@ -88,7 +90,7 @@ ${formData.name}`;
 
     // Your WhatsApp number (replace with your actual WhatsApp number)
     // Format: country code + number (no + or spaces)
-    const whatsappNumber = "94771234567"; // Replace with your WhatsApp number
+    const whatsappNumber = "94758236366"; // Replace with your WhatsApp number
     
     // Construct WhatsApp URL
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
