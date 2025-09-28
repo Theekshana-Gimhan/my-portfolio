@@ -30,11 +30,15 @@ import { useState } from 'react';
  * 4. Simulated API call (2 second delay)
  * 5. Form resets on success
  * 
+ * WhatsApp Integration:
+ * - Form submissions open WhatsApp with pre-filled message
+ * - Update whatsappNumber variable with your actual WhatsApp number
+ * - Format: country code + number (no + or spaces, e.g., "94771234567")
+ * 
  * Future Enhancements:
- * - Replace setTimeout with real API endpoint
  * - Add toast notifications for success/error states
- * - Implement server-side validation
- * - Add email service integration (EmailJS, etc.)
+ * - Add phone number validation
+ * - Add fallback email option if WhatsApp fails
  */
 export default function ContactSection() {
   /*
@@ -55,27 +59,48 @@ export default function ContactSection() {
   /*
    * Form Submission Handler
    * ──────────────────────
-   * Prevents default form behavior and manages submission flow.
-   * Currently simulates API call - replace with real endpoint in production.
+   * Prevents default form behavior and sends WhatsApp message.
+   * Constructs WhatsApp URL with form data and opens it in a new tab.
    * 
    * Submission Process:
    * 1. Prevent page reload
    * 2. Activate loading state
-   * 3. Simulate API delay (2 seconds)
-   * 4. Reset form and deactivate loading
-   * 
-   * TODO: Replace setTimeout with actual API integration
+   * 3. Construct WhatsApp message with form data
+   * 4. Open WhatsApp with pre-filled message
+   * 5. Reset form after brief delay
    */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission - REPLACE WITH REAL API CALL
+    // Construct WhatsApp message with form data
+    const whatsappMessage = `Hi! I'm ${formData.name}
+
+Subject: ${formData.subject}
+
+${formData.message}
+
+Contact Details:
+Email: ${formData.email}
+
+Best regards,
+${formData.name}`;
+
+    // Your WhatsApp number (replace with your actual WhatsApp number)
+    // Format: country code + number (no + or spaces)
+    const whatsappNumber = "94771234567"; // Replace with your WhatsApp number
+    
+    // Construct WhatsApp URL
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappURL, '_blank');
+    
+    // Reset form after a brief delay
     setTimeout(() => {
       setIsSubmitting(false);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      // TODO: Add success/error toast notifications
-    }, 2000);
+    }, 1000);
   };
 
   /*
@@ -313,10 +338,10 @@ export default function ContactSection() {
                           <span>Sending...</span>
                         </>
                       ) : (
-                        /* Default state with paper plane icon */
+                        /* Default state with WhatsApp icon */
                         <>
-                          <span>Send Message</span>
-                          <i className="ph ph-paper-plane-tilt text-lg group-hover:translate-x-1 transition-transform duration-300"></i>
+                          <span>Send via WhatsApp</span>
+                          <i className="ph ph-whatsapp-logo text-lg group-hover:translate-x-1 transition-transform duration-300"></i>
                         </>
                       )}
                     </span>
