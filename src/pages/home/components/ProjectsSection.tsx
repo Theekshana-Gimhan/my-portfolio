@@ -1,5 +1,8 @@
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import type { Project } from '../../../data/projects';
+import dataProjects from '../../../data/projects';
+import imageManifest from '../../../utils/imageManifest';
 
 /**
  * ProjectsSection Component
@@ -28,7 +31,7 @@ import { useState } from 'react';
  */
 export default function ProjectsSection() {
   // Modal state management - selectedProject contains the currently viewed project data
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   /*
    * Projects Data Array
@@ -43,72 +46,20 @@ export default function ProjectsSection() {
    * Future Enhancement: This could be moved to a CMS, JSON file, or API endpoint
    */
 
-  const projects = [
-    {
-      id: 1,
-      title: 'AI-Powered E-Commerce Platform',
-      description: 'A revolutionary shopping experience with intelligent product recommendations and immersive 3D product previews.',
-      fullDescription: 'This comprehensive e-commerce platform leverages artificial intelligence to provide personalized shopping experiences. Features include real-time product recommendations, 3D product visualization, voice search capabilities, and advanced analytics dashboard for merchants.',
-      techStack: ['React', 'Node.js', 'TensorFlow', 'Three.js', 'MongoDB'],
-      features: ['AI-Powered Recommendations', 'Interactive 3D Product Views', 'Voice Search Integration', 'Real-time Analytics', 'Mobile-First Design', 'Advanced Security'],
-      image: 'https://readdy.ai/api/search-image?query=Modern%20e-commerce%20platform%20interface%2C%20AI-powered%20shopping%20website%2C%20futuristic%20design%2C%20clean%20minimalist%20layout%2C%20dark%20theme%20with%20glowing%20elements%2C%20high-tech%20dashboard&width=600&height=400&seq=project-ecommerce&orientation=landscape',
-      gallery: [
-        'https://readdy.ai/api/search-image?query=E-commerce%20dashboard%20interface%2C%20analytics%20charts%2C%20modern%20dark%20theme%2C%20professional%20business%20interface%2C%20data%20visualization&width=800&height=500&seq=ecommerce-gallery-1&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=3D%20product%20viewer%20interface%2C%20interactive%20product%20showcase%2C%20modern%20e-commerce%20design%2C%20immersive%20shopping%20experience&width=800&height=500&seq=ecommerce-gallery-2&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=Mobile%20e-commerce%20app%20interface%2C%20shopping%20cart%20design%2C%20modern%20mobile%20UI%2C%20clean%20product%20listings&width=800&height=500&seq=ecommerce-gallery-3&orientation=landscape'
-      ],
-      liveUrl: 'https://demo-ecommerce.example.com',
-      githubUrl: 'https://github.com/theekshana/ai-ecommerce'
-    },
-    {
-      id: 2,
-      title: 'Interactive Data Visualization Dashboard',
-      description: 'Real-time analytics dashboard with stunning 3D data visualizations and interactive charts for enterprise clients.',
-      fullDescription: 'A comprehensive business intelligence platform that transforms complex data into intuitive visual insights. Built for enterprise clients who need real-time monitoring and advanced analytics capabilities.',
-      techStack: ['Vue.js', 'D3.js', 'WebGL', 'Python', 'PostgreSQL'],
-      features: ['Real-time Data Processing', '3D Chart Visualizations', 'Custom Dashboard Builder', 'Advanced Filtering', 'Export Capabilities', 'Multi-tenant Architecture'],
-      image: 'https://readdy.ai/api/search-image?query=Advanced%20data%20analytics%20dashboard%2C%203D%20data%20visualization%20interface%2C%20charts%20and%20graphs%2C%20dark%20theme%20with%20neon%20accents%2C%20professional%20business%20intelligence%20platform&width=600&height=400&seq=project-dashboard&orientation=landscape',
-      gallery: [
-        'https://readdy.ai/api/search-image?query=Business%20intelligence%20dashboard%2C%20interactive%20charts%2C%20data%20visualization%20interface%2C%20professional%20analytics%20platform&width=800&height=500&seq=dashboard-gallery-1&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=3D%20data%20visualization%2C%20interactive%20graphs%2C%20modern%20dashboard%20design%2C%20business%20analytics%20interface&width=800&height=500&seq=dashboard-gallery-2&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=Real-time%20monitoring%20dashboard%2C%20system%20metrics%20interface%2C%20professional%20enterprise%20software%2C%20dark%20theme&width=800&height=500&seq=dashboard-gallery-3&orientation=landscape'
-      ],
-      liveUrl: 'https://demo-analytics.example.com',
-      githubUrl: 'https://github.com/theekshana/analytics-dashboard'
-    },
-    {
-      id: 3,
-      title: 'Virtual Reality Training Platform',
-      description: 'Immersive VR training simulations for medical professionals with realistic scenarios and performance tracking.',
-      fullDescription: 'Revolutionary VR training platform designed specifically for medical education. Provides immersive, risk-free learning environments where medical students and professionals can practice complex procedures.',
-      techStack: ['WebXR', 'A-Frame', 'React', 'Firebase', 'Three.js'],
-      features: ['Immersive VR Simulations', 'Performance Analytics', 'Multi-user Sessions', 'Realistic Medical Scenarios', 'Progress Tracking', 'Cross-platform Compatibility'],
-      image: 'https://readdy.ai/api/search-image?query=VR%20training%20interface%2C%20medical%20simulation%20platform%2C%20virtual%20reality%20headset%20view%2C%20futuristic%20medical%20training%20environment%2C%20immersive%203D%20medical%20scenarios&width=600&height=400&seq=project-vr&orientation=landscape',
-      gallery: [
-        'https://readdy.ai/api/search-image?query=VR%20medical%20training%20interface%2C%20virtual%20surgery%20simulation%2C%20immersive%20medical%20education%20platform%2C%20realistic%20training%20environment&width=800&height=500&seq=vr-gallery-1&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=Virtual%20reality%20classroom%2C%20medical%20students%20training%2C%20VR%20headsets%2C%20modern%20educational%20technology&width=800&height=500&seq=vr-gallery-2&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=VR%20training%20analytics%20dashboard%2C%20performance%20metrics%20interface%2C%20medical%20education%20platform%2C%20progress%20tracking&width=800&height=500&seq=vr-gallery-3&orientation=landscape'
-      ],
-      liveUrl: 'https://demo-vrtraining.example.com',
-      githubUrl: 'https://github.com/theekshana/vr-training'
-    },
-    {
-      id: 4,
-      title: 'Blockchain-Based Social Network',
-      description: 'Decentralized social media platform with NFT integration and cryptocurrency rewards for content creators.',
-      fullDescription: 'Next-generation social media platform built on blockchain technology. Empowers content creators with true ownership of their content and fair compensation through cryptocurrency rewards and NFT integration.',
-      techStack: ['Next.js', 'Ethereum', 'Solidity', 'IPFS', 'Web3.js'],
-      features: ['Decentralized Content Storage', 'NFT Marketplace Integration', 'Cryptocurrency Rewards', 'Smart Contract Automation', 'User Governance', 'Cross-chain Compatibility'],
-      image: 'https://readdy.ai/api/search-image?query=Blockchain%20social%20media%20interface%2C%20cryptocurrency%20platform%20design%2C%20NFT%20marketplace%20integration%2C%20modern%20dark%20theme%20social%20network%2C%20decentralized%20app%20interface&width=600&height=400&seq=project-blockchain&orientation=landscape',
-      gallery: [
-        'https://readdy.ai/api/search-image?query=Blockchain%20social%20network%20interface%2C%20crypto%20rewards%20system%2C%20decentralized%20social%20media%20platform%2C%20modern%20web3%20design&width=800&height=500&seq=blockchain-gallery-1&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=NFT%20marketplace%20interface%2C%20digital%20collectibles%20platform%2C%20blockchain%20trading%20interface%2C%20modern%20crypto%20design&width=800&height=500&seq=blockchain-gallery-2&orientation=landscape',
-        'https://readdy.ai/api/search-image?query=Cryptocurrency%20wallet%20interface%2C%20blockchain%20transaction%20history%2C%20web3%20user%20dashboard%2C%20modern%20crypto%20app&width=800&height=500&seq=blockchain-gallery-3&orientation=landscape'
-      ],
-      liveUrl: 'https://demo-blockchain-social.example.com',
-      githubUrl: 'https://github.com/theekshana/blockchain-social'
-    }
-  ];
+  // Prepare projects from data module
+  const projects: Project[] = useMemo(() => dataProjects, []);
+
+  // Resolve image URL: if value looks like a local filename, try manifest preferred jpg/webp
+  const resolveImage = (value?: string): string => {
+    if (!value) return '';
+    const looksLikeLocal = typeof value === 'string' && !/^https?:\/\//i.test(value);
+    if (!looksLikeLocal) return value;
+    const entry = imageManifest.getPreferredAndSrcset(value);
+    if (entry?.webp) return entry.webp;
+    if (entry?.jpg) return entry.jpg;
+    // Fallback to original in assets (bundled by Vite if imported elsewhere)
+    return '';
+  };
 
   /*
    * Modal Control Functions
@@ -119,7 +70,7 @@ export default function ProjectsSection() {
    * 
    * Modal visibility is controlled by conditional rendering based on selectedProject
    */
-  const openProjectModal = (project: any) => {
+  const openProjectModal = (project: Project) => {
     setSelectedProject(project);
   };
 
@@ -201,11 +152,20 @@ export default function ProjectsSection() {
                   
                   {/* Main image with border and hover scaling */}
                   <div className="relative overflow-hidden rounded-2xl border border-white/10 group-hover:border-[#D8ECF8]/30 transition-all duration-500">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-80 object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                    />
+                    {resolveImage(project.image) ? (
+                      <img
+                        src={resolveImage(project.image)}
+                        alt={project.title}
+                        className="w-full h-80 object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                      />
+                    ) : (
+                      <div className="w-full h-80 bg-gradient-to-br from-[#0b0e1a] to-[#101528] flex items-center justify-center text-center">
+                        <div>
+                          <div className="text-[#D8ECF8] text-2xl font-bold font-['Inter']">{project.title}</div>
+                          <div className="text-white/50 mt-2">Screenshot coming soon</div>
+                        </div>
+                      </div>
+                    )}
                     {/* Dark overlay that appears on hover for better text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#05060f]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
@@ -344,11 +304,20 @@ export default function ProjectsSection() {
                 Fixed height with object-cover for consistent display across projects.
               */}
               <div className="mb-8 relative overflow-hidden rounded-2xl border border-[#D8ECF8]/20">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-96 object-cover object-top"
-                />
+                {resolveImage(selectedProject.image) ? (
+                  <img
+                    src={resolveImage(selectedProject.image)}
+                    alt={selectedProject.title}
+                    className="w-full h-96 object-cover object-top"
+                  />
+                ) : (
+                  <div className="w-full h-96 bg-gradient-to-br from-[#0b0e1a] to-[#101528] flex items-center justify-center text-center">
+                    <div>
+                      <div className="text-[#D8ECF8] text-3xl font-bold font-['Inter']">{selectedProject.title}</div>
+                      <div className="text-white/50 mt-2">Gallery coming soon</div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* 
@@ -359,13 +328,19 @@ export default function ProjectsSection() {
                 Future enhancement: Could implement lightbox functionality.
               */}
               <div className="grid md:grid-cols-3 gap-4 mb-8">
-                {selectedProject.gallery.map((image: string, index: number) => (
+                {(selectedProject.gallery ?? []).map((image: string, index: number) => (
                   <div key={index} className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#D8ECF8]/30 transition-all duration-300 cursor-pointer">
-                    <img
-                      src={image}
-                      alt={`${selectedProject.title} screenshot ${index + 1}`}
-                      className="w-full h-48 object-cover object-top hover:scale-105 transition-transform duration-500"
-                    />
+                    {resolveImage(image) ? (
+                      <img
+                        src={resolveImage(image)}
+                        alt={`${selectedProject.title} screenshot ${index + 1}`}
+                        className="w-full h-48 object-cover object-top hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-48 bg-gradient-to-br from-[#0b0e1a] to-[#101528] flex items-center justify-center text-white/50 text-sm">
+                        Screenshot {index + 1}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -420,26 +395,30 @@ export default function ProjectsSection() {
                   */}
                   <div className="space-y-4">
                     {/* Primary CTA: Live Demo */}
-                    <a
-                      href={selectedProject.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer" /* Security best practice for external links */
-                      className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#D8ECF8]/20 to-[#D8ECF8]/10 border border-[#D8ECF8]/30 rounded-xl font-[\'Inter\'] text-[#D8ECF8] hover:from-[#D8ECF8]/30 hover:to-[#D8ECF8]/20 hover:border-[#D8ECF8]/50 transition-all duration-300 cursor-pointer whitespace-nowrap"
-                    >
-                      <i className="ph ph-globe text-lg"></i>
-                      <span>View Live Demo</span>
-                    </a>
+                    {selectedProject.liveUrl && (
+                      <a
+                        href={selectedProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer" /* Security best practice for external links */
+                        className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#D8ECF8]/20 to-[#D8ECF8]/10 border border-[#D8ECF8]/30 rounded-xl font-[\'Inter\'] text-[#D8ECF8] hover:from-[#D8ECF8]/30 hover:to-[#D8ECF8]/20 hover:border-[#D8ECF8]/50 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                      >
+                        <i className="ph ph-globe text-lg"></i>
+                        <span>View Live Demo</span>
+                      </a>
+                    )}
                     
                     {/* Secondary CTA: Source Code */}
-                    <a
-                      href={selectedProject.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white/5 border border-white/20 rounded-xl font-[\'Inter\'] text-white hover:border-[#D8ECF8]/30 hover:bg-[#D8ECF8]/5 transition-all duration-300 cursor-pointer whitespace-nowrap"
-                    >
-                      <i className="ph ph-github-logo text-lg"></i>
-                      <span>View Source Code</span>
-                    </a>
+                    {selectedProject.githubUrl && (
+                      <a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white/5 border border-white/20 rounded-xl font-[\'Inter\'] text-white hover:border-[#D8ECF8]/30 hover:bg-[#D8ECF8]/5 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                      >
+                        <i className="ph ph-github-logo text-lg"></i>
+                        <span>View Source Code</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
