@@ -68,9 +68,9 @@ export const projects: Project[] = [
       'Microphone permission handling',
       'Enhanced user feedback during speech'
     ],
-    // If you have local screenshots, add the filenames here after placing originals in src/assets and running the optimizer
-    image: '',
-    gallery: [],
+  // Local screenshots placed in src/assets/pro1
+  image: 'pro1/pro1s1.PNG',
+  gallery: ['pro1/pro1s2.PNG', 'pro1/pro1s3.PNG', 'pro1/pro1s4.PNG'],
     liveUrl: 'https://ai-persona-simulator-85939737092.us-central1.run.app',
     githubUrl: 'https://github.com/Mad-marketing-git/ai-persona-simulator',
     tags: ['AI', 'Voice', 'Training', 'Cloud', 'GCP']

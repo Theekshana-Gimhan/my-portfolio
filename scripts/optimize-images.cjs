@@ -30,21 +30,25 @@ function isImageFile(name) {
   return /\.(jpe?g|png)$/i.test(name);
 }
 
-async function processImage(file) {
-  const inputPath = path.join(ASSETS_DIR, file);
-  const ext = path.extname(file).toLowerCase();
-  const base = path.basename(file, ext);
+async function processImage(relFilePath) {
+  // relFilePath is relative to ASSETS_DIR, may include subfolders (e.g., 'pro1/pro1s1.PNG')
+  const inputPath = path.join(ASSETS_DIR, relFilePath);
+  const ext = path.extname(relFilePath).toLowerCase();
+  const base = path.basename(relFilePath, ext);
+  // Create a slug from the relative path (without extension) to avoid filename collisions
+  const relNoExt = relFilePath.slice(0, -ext.length);
+  const slug = relNoExt.replace(/[\\/]/g, '_');
 
   const variants = [];
 
   for (const w of WIDTHS) {
     // WebP
-    const outWebp = path.join(OUTPUT_DIR, `${base}_${w}.webp`);
+    const outWebp = path.join(OUTPUT_DIR, `${slug}_${w}.webp`);
     await sharp(inputPath).resize({ width: w }).webp({ quality: 80 }).toFile(outWebp);
     variants.push({ width: w, format: 'webp', path: `optimized/${path.basename(outWebp)}` });
 
     // JPEG fallback (for PNG sources, we still create a JPEG fallback)
-    const outJpg = path.join(OUTPUT_DIR, `${base}_${w}.jpg`);
+    const outJpg = path.join(OUTPUT_DIR, `${slug}_${w}.jpg`);
     await sharp(inputPath).resize({ width: w }).jpeg({ quality: 80 }).toFile(outJpg);
     variants.push({ width: w, format: 'jpg', path: `optimized/${path.basename(outJpg)}` });
   }
@@ -54,13 +58,14 @@ async function processImage(file) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  const preferredWebp = path.join(OUTPUT_DIR, `${base}_800.webp`);
+  const preferredWebp = path.join(OUTPUT_DIR, `${slug}_800.webp`);
   await sharp(inputPath).resize({ width: 800 }).webp({ quality: 80 }).toFile(preferredWebp);
-  const fallbackJpg = path.join(OUTPUT_DIR, `${base}_800.jpg`);
+  const fallbackJpg = path.join(OUTPUT_DIR, `${slug}_800.jpg`);
   await sharp(inputPath).resize({ width: 800 }).jpeg({ quality: 80 }).toFile(fallbackJpg);
 
   return {
-    source: file,
+    // Keep manifest key as the original relative path (normalized with forward slashes)
+    source: relFilePath.replace(/\\/g, '/'),
     variants,
     preferred: { webp: `optimized/${path.basename(preferredWebp)}`, jpg: `optimized/${path.basename(fallbackJpg)}` }
   };
@@ -77,16 +82,38 @@ async function processImage(file) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  const files = fs.readdirSync(ASSETS_DIR).filter(isImageFile);
+  // Recursively walk assets directory to include subfolder images (excluding optimized folder and manifest file)
+  /** @type {string[]} */
+  const relFiles = [];
+
+  function walk(dir, relBase = '') {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const abs = path.join(dir, entry.name);
+      const rel = path.join(relBase, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name === 'optimized') continue; // skip output folder
+        walk(abs, rel);
+      } else if (entry.isFile()) {
+        if (entry.name === 'image-manifest.json') continue; // skip manifest itself
+        if (isImageFile(entry.name)) {
+          relFiles.push(rel);
+        }
+      }
+    }
+  }
+
+  walk(ASSETS_DIR, '');
+
   const manifest = {};
 
-  for (const file of files) {
+  for (const rel of relFiles) {
     try {
-      console.log('Processing', file);
-      const info = await processImage(file);
+      console.log('Processing', rel);
+      const info = await processImage(rel);
       manifest[info.source] = info;
     } catch (err) {
-      console.error('Failed processing', file, err);
+      console.error('Failed processing', rel, err);
     }
   }
 
