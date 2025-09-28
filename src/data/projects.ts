@@ -74,6 +74,35 @@ export const projects: Project[] = [
     liveUrl: 'https://ai-persona-simulator-85939737092.us-central1.run.app',
     githubUrl: 'https://github.com/Mad-marketing-git/ai-persona-simulator',
     tags: ['AI', 'Voice', 'Training', 'Cloud', 'GCP']
+  },
+  {
+    id: 2,
+    title: 'KPI Dashboard',
+    description: 'Web application to track and visualize KPIs with auth, CRUD, charts, export, and role-based access.',
+    fullDescription:
+      'A KPI Dashboard designed to manage and visualize Key Performance Indicators with modules like Admissions and Visa. Built with ASP.NET Core and EF Core, it includes authentication, role-based access, data management, reporting, and a comprehensive dashboard.',
+    techStack: [
+      'ASP.NET Core',
+      'Entity Framework Core',
+      'SQL Server',
+      'Bootstrap',
+      'jQuery',
+      'Chart.js'
+    ],
+    features: [
+      'User authentication (ASP.NET Core Identity)',
+      'KPI CRUD management',
+      'Dashboard with charts and progress tracking',
+      'Data export (CSV, PDF)',
+      'Email notifications',
+      'Role-based access control'
+    ],
+    image: 'pro2/pro2s1.PNG',
+    gallery: ['pro2/pro2s2.PNG', 'pro2/pro2s3.PNG', 'pro2/pro2s4.PNG'],
+    // Add these when available
+    // liveUrl: 'https://your-live-url',
+    // githubUrl: 'https://github.com/your-username/KPI_Dashboard',
+    tags: ['Dashboard', 'KPIs', 'Charts', 'Reporting']
   }
 ];
 
